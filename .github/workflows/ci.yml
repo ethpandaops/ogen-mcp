@@ -10,7 +10,9 @@ permissions:
 
 jobs:
   lint:
-    runs-on: ubuntu-24.04
+    runs-on:
+      - self-hosted-ghr
+      - size-l-x64
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
       - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
@@ -22,7 +24,9 @@ jobs:
           only-new-issues: ${{ github.event_name == 'pull_request' }}
 
   test:
-    runs-on: ubuntu-24.04
+    runs-on:
+      - self-hosted-ghr
+      - size-l-x64
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
       - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
@@ -37,7 +41,9 @@ jobs:
           retention-days: 14
 
   build:
-    runs-on: ubuntu-24.04
+    runs-on:
+      - self-hosted-ghr
+      - size-l-x64
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
         with:
@@ -51,7 +57,9 @@ jobs:
           args: build --snapshot --clean
 
   checks:
-    runs-on: ubuntu-24.04
+    runs-on:
+      - self-hosted-ghr
+      - size-l-x64
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
       - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
